@@ -256,12 +256,8 @@ class TgUploader:
                 else:
                     notMedia = True
             if self.__as_doc or notMedia:
-                if is_video and thumb is None:
-                    thumb = take_ss(up_path, None)
-                    if self.__is_cancelled:
-                        if self.__thumb is None and thumb is not None and ospath.lexists(thumb):
-                            osremove(thumb)
-                        return
+                if self.__is_cancelled:
+                    return
                 if len(LEECH_LOG) != 0:
                     for leechchat in self.__leech_log:
                         if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = premium_session
